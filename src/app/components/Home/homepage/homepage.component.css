@@ -1,0 +1,29 @@
+
+
+
+
+.big-img{
+      /* The image used */
+      background-image: url("/assets/images/images.jpeg");
+  
+      min-height: 400px;
+    
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    
+      /* Needed to position the navbar */
+      position: relative;
+}
+
+
+.example-card {
+    width: 400px;
+    display: inline-block;
+    margin-left:15% ;
+    border: 2px;
+    border-radius: 4px;
+}
+  
+  
