@@ -82,7 +82,7 @@ var customer={
 
                  
 
-                 localStorage.setItem('data',response);
+                 console.log('data',response);
 
                  //console.log(localStorage.getItem('data'));
 

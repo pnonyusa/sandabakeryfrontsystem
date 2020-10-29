@@ -24,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import{CustomerService} from './_services/customer.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateCustomerProfileComponent } from './components/update-customer-profile/update-customer-profile.component';
+import { ListCustomersComponent } from './components/list-customers/list-customers.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { UpdateCustomerProfileComponent } from './components/update-customer-pro
     RegisterPageComponent,
     HeaderPageComponent,
     ForgotPasswordPageComponent,
-    UpdateCustomerProfileComponent
+    UpdateCustomerProfileComponent,
+    ListCustomersComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import { UpdateCustomerProfileComponent } from './components/update-customer-pro
     MatGridListModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [CustomerService],
   bootstrap: [AppComponent]

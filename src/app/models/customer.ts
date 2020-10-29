@@ -1,11 +1,13 @@
 import { Address } from './address';
 
 export class Customer {
-       customerId:string;
-       lastName:string;
-	 firstName:string;
-	 emailAddress:string;
-	 password:string;
-       cellNumber:string;
-       address:Address;
+
+
+       customerId:string=null;
+       lastName:string=null;
+	 firstName:string=null;
+	 emailAddress:string=null;
+	 password:string=null;
+       cellNumber:string=null;
+       address:Address=null;
 }
