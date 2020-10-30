@@ -19,7 +19,7 @@ export class ListCustomersComponent implements OnInit {
     this.customerService.getUserDetails(0,11).subscribe((data) => {
       this.myCustomer=(data);
       //this.myCustomer.address=(data.address);
-       console.log("my payments :"+data);
+       console.log("my payments :",JSON.stringify(data));
     }, (error) =>{
     
       if(error.status==200){

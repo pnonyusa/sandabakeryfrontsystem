@@ -22,9 +22,11 @@ import { HeaderPageComponent } from './components/header-page/header-page.compon
 import { ForgotPasswordPageComponent } from './components/forgot-password-page/forgot-password-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import{CustomerService} from './_services/customer.service';
+import{ProductService} from './_services/product.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateCustomerProfileComponent } from './components/update-customer-profile/update-customer-profile.component';
 import { ListCustomersComponent } from './components/list-customers/list-customers.component';
+import { ProductsComponent } from './components/products/products.component';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { ListCustomersComponent } from './components/list-customers/list-custome
     HeaderPageComponent,
     ForgotPasswordPageComponent,
     UpdateCustomerProfileComponent,
-    ListCustomersComponent
+    ListCustomersComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import { ListCustomersComponent } from './components/list-customers/list-custome
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [CustomerService],
+  providers: [CustomerService,ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
