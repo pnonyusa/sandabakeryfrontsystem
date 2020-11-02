@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
@@ -51,6 +52,33 @@ export class ProductsComponent implements OnInit {
     
     
     this.loading=true;
+
+
+    this.productService.addProduct(product)
+     .pipe(first()).
+      subscribe(
+               (response)=>{
+
+                 console.log('data',response);
+
+                 //console.log(localStorage.getItem('data'));
+
+                 this.router.navigate(['/login']);
+               },(error)=>{
+
+                     if(error.status==200){
+                      
+                      //localStorage.setItem('customerData',error.text);
+                      //console.log(localStorage.getItem('customerData'));
+
+                      this.router.navigate(['/login']);
+                     }
+                     this.loading=false;
+                     console.log(error);
+                    
+               }     
+     );
+
   }
 
 }

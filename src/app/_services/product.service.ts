@@ -17,4 +17,11 @@ export class ProductService {
 
   }
 
+
+  getProducts(page,limit){
+    var header = new HttpHeaders({'Content-Type':'application/json'});
+    return this.httpClient.get<any>(`${AppSettings.BASE_URL}/product?page=${page}&limit=${limit}`,{headers:header})
+    .pipe(map((response)=> { return response; }));
+  }
+
 }

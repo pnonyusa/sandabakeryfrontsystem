@@ -27,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateCustomerProfileComponent } from './components/update-customer-profile/update-customer-profile.component';
 import { ListCustomersComponent } from './components/list-customers/list-customers.component';
 import { ProductsComponent } from './components/products/products.component';
+import { ListProductsComponent } from './components/list-products/list-products.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ProductsComponent } from './components/products/products.component';
     ForgotPasswordPageComponent,
     UpdateCustomerProfileComponent,
     ListCustomersComponent,
-    ProductsComponent
+    ProductsComponent,
+    ListProductsComponent
   ],
   imports: [
     BrowserModule,
