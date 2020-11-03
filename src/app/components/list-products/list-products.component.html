@@ -4,6 +4,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Product Id</th>
         <th scope="col">Product Name</th>
         <th scope="col">Product Description</th>
         <th scope="col">Product Category</th>
@@ -12,11 +13,14 @@
         <th scope="col">Quantity</th>
         <th scope="col">Product Ingredients</th>
         <th scope="col">Image</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let myproducts of products;let i=index " >
+        
         <th scope="row">{{i+1}}</th>
+        <td>{{myproducts.productId}}</td>
         <td>{{myproducts.productName}}</td>
         <td>{{myproducts.productDescription}}</td>
         <td>{{myproducts.productCategory}}</td>
@@ -24,7 +28,22 @@
         <td>{{myproducts.price}}</td>
         <td>{{myproducts.quantityOnHand}}</td>
         <td>{{myproducts.productIngredients}}</td>
-        <!--<td>{{myproducts.}}</td>-->
+        <td></td>
+        <td>
+
+                   <!-- Call to action buttons -->
+              <ul class="list-inline m-0">
+                    <li class="list-inline-item">
+                        <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                    </li>
+                    <li class="list-inline-item">
+                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                    </li>
+                </ul>
+
+      </td>
+        
+
       </tr>
     </tbody>
   </table>

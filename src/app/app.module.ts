@@ -28,6 +28,7 @@ import { UpdateCustomerProfileComponent } from './components/update-customer-pro
 import { ListCustomersComponent } from './components/list-customers/list-customers.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ListProductsComponent } from './components/list-products/list-products.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ListProductsComponent } from './components/list-products/list-products.
     UpdateCustomerProfileComponent,
     ListCustomersComponent,
     ProductsComponent,
-    ListProductsComponent
+    ListProductsComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
