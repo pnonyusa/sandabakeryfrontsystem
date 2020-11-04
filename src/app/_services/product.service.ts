@@ -24,4 +24,35 @@ export class ProductService {
     .pipe(map((response)=> { return response; }));
   }
 
+  updateProduct(productId,product){
+    var header = new HttpHeaders({'Content-Type':'application/json'});
+  
+    return this.httpClient.put<any>(`${AppSettings.BASE_URL}/product/updateproduct/${productId}`,product,{headers:header}).
+            pipe(map(x=>{
+                   if(productId!=null){
+                       
+                    localStorage.setItem("userData",JSON.stringify(productId));
+  
+                   }
+  
+                   return x
+            }));
+            
+  }
+
+
+  getProduct(productId){
+    var header = new HttpHeaders({'Content-Type':'application/json'});
+    return this.httpClient.get<any>(`${AppSettings.BASE_URL}/product/${productId}`,{headers:header})
+    .pipe(map((response)=> { return response; }));
+  }
+
+
+  deleteProduct(productId){
+    var header = new HttpHeaders({'Content-Type':'application/json'});
+    return this.httpClient.delete<any>(`${AppSettings.BASE_URL}/product/deleteProduct/${productId}`,{headers:header})
+    .pipe(map((response)=> { return response; }));
+
+  }
+
 }

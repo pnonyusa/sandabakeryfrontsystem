@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
 import { ProductService } from 'src/app/_services/product.service';
 import {Product} from 'src/app/models/product'
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-products',
@@ -14,6 +14,7 @@ export class ListProductsComponent implements OnInit {
   products:Array<Product>;
   loading = false;
   submitted = false;
+  
 
   constructor(private router:Router,private productService :ProductService) { 
 
@@ -34,6 +35,43 @@ export class ListProductsComponent implements OnInit {
             console.log(error);
         }
     });
+
+  }
+
+
+
+  deleteProduct(productId){
+     
+    
+    this. submitted = true;
+
+
+
+    this.loading=true;
+    this.productService.deleteProduct(productId)
+     .pipe(first()).
+      subscribe(
+               (response)=>{
+
+                 console.log('data',response);
+
+                 //console.log(localStorage.getItem('data'));
+
+                 this.router.navigate(['/product']);
+               },(error)=>{
+
+                     if(error.status==200){
+                      
+                      //localStorage.setItem('customerData',error.text);
+                      //console.log(localStorage.getItem('customerData'));
+                      window.location.reload();
+                      this.router.navigate(['/product']);
+                     }
+                     this.loading=false;
+                     console.log(error);
+                    
+               }     
+     );
 
   }
 

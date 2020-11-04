@@ -28,7 +28,8 @@ export class ProductsComponent implements OnInit {
       productRating:[''],
       price:[''],
       productIngredients:[''],
-      quantityOnHand:['']
+      quantityOnHand:[''],
+      image:['']
     });
 
   }
@@ -44,7 +45,8 @@ export class ProductsComponent implements OnInit {
       'productRating':this.productFm.get("productRating").value,
       'price':+this.productFm.get("price").value,
       'productIngredients':this.productFm.get("productIngredients").value,
-      'quantityOnHand':+this.productFm.get("quantityOnHand").value
+      'quantityOnHand':+this.productFm.get("quantityOnHand").value,
+      'image':this.productFm.get("image").value
     }
 
 

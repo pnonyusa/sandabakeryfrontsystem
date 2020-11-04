@@ -25,6 +25,10 @@
             </div>  
 
             <div class="form-group">
+                <input type="text" class="form-control" formControlName="image" placeholder="Image name" >
+            </div>
+
+            <div class="form-group">
                 <select formControlName="productCategory">
                     <option value="">Choose category</option>
                     <option *ngFor="let category of categories">{{category}}</option>

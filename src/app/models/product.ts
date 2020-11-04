@@ -5,6 +5,7 @@ export class Product {
     productCategory:string;
     productRating:string;
     productIngredients:string;
+    image:string;
     price:number;
     quantityOnHand:number;
 }

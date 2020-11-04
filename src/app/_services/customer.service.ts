@@ -52,5 +52,13 @@ getUserDetails(page,limit){
   .pipe(map((response)=> { return response; }));
 }
 
+getUserDetail(emailAddress){
+  var header = new HttpHeaders({'Content-Type':'application/json'});
+  return this.httpClient.get<any>(`${AppSettings.BASE_URL}/customers/${emailAddress}`,{headers:header})
+  .pipe(map((response)=> { return response; }));
+}
+
+
+
 
 }
