@@ -32,7 +32,7 @@ registerCustomer(customer){
 updateCustomer(customerId,customer){
   var header = new HttpHeaders({'Content-Type':'application/json'});
 
-  return this.httpClient.put<any>(`${AppSettings.BASE_URL}/update/${customerId}`,customer,{headers:header}).
+  return this.httpClient.put<any>(`${AppSettings.BASE_URL}/customers/update/${customerId}`,customer,{headers:header}).
           pipe(map(x=>{
                  if(customerId!=null){
                      
@@ -52,10 +52,18 @@ getUserDetails(page,limit){
   .pipe(map((response)=> { return response; }));
 }
 
-getUserDetail(emailAddress){
+getUserDetail(customerId){
   var header = new HttpHeaders({'Content-Type':'application/json'});
-  return this.httpClient.get<any>(`${AppSettings.BASE_URL}/customers/${emailAddress}`,{headers:header})
+  return this.httpClient.get<any>(`${AppSettings.BASE_URL}/customers/${customerId}`,{headers:header})
   .pipe(map((response)=> { return response; }));
+}
+
+
+
+deleteCustomer(customerId){
+  var header = new HttpHeaders({'Content-Type':'application/json'});
+  return this.httpClient.delete<any>(`${AppSettings.BASE_URL}/customers/delete/${customerId}`,{headers:header})
+  .pipe(map((response)=>{return response}));
 }
 
 

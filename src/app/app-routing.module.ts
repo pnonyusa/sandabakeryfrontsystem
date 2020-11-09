@@ -9,6 +9,7 @@ import { ListProductsComponent } from './components/list-products/list-products.
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProductsComponent } from './components/products/products.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { UpdateCustomerProfileComponent } from './components/update-customer-profile/update-customer-profile.component';
 
 
 const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
 {path:'list-customers',component:ListCustomersComponent},
 {path:'product/add',component:ProductsComponent},
 {path:'product',component:ListProductsComponent},
-{path:'product/:productId',component:EditProductComponent}];
+{path:'product/:productId',component:EditProductComponent},
+{path:'customers/:customerId',component:UpdateCustomerProfileComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

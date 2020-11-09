@@ -9,5 +9,6 @@ export class Customer {
 	 emailAddress:string=null;
 	 password:string=null;
        cellNumber:string=null;
+       confirmPassword:string=null;
        address:Address=null;
 }

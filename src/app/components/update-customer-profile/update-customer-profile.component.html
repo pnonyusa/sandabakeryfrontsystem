@@ -1,1 +1,65 @@
-<p>update-customer-profile works!</p>
+<app-header-page></app-header-page>
+<div class="bg-img">
+    <div class="signup-form">
+        <form [formGroup]="updateCustomerFm" (ngSubmit)="submit()" >
+            <h2>Edit Customer</h2>
+            <p class="hint-text">Create your a</p>
+            <div class="form-group">
+                    <input type="text" [(ngModel)]="myCustomer.firstName" class="form-control" formControlName="firstName" placeholder="First Name"  >    	
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="myCustomer.lastName" class="form-control" formControlName="lastName" placeholder="Last Name"  >
+            </div>
+            <div class="form-group">
+                <input type="email" [(ngModel)]="myCustomer.emailAddress" disabled class="form-control" formControlName="emailAddress" placeholder="Email" >
+            </div>
+            <div class="form-group">
+                <input type="password"  [(ngModel)]="myCustomer.firstName" class="form-control" formControlName="password" placeholder="Password"  >
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password" >
+            </div>  
+            <div class="form-group">
+                <input type="tel" [(ngModel)]="myCustomer.cellNumber" class="form-control" formControlName="cellNumber" placeholder="Cell Number"  >
+            </div>  
+
+            
+            <div formGroupName="addressFrm">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="myCustomer.address.streetName " class="form-control" formControlName="streetName" placeholder="street Name">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="myCustomer.address.city" class="form-control" formControlName="city" placeholder="city"  >
+                </div>
+
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="myCustomer.address.country" disabled class="form-control" formControlName="country" placeholder="country"  >
+                </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="myCustomer.address.postalCode" class="form-control" formControlName="postalCode" placeholder="postalCode"  >
+
+                </div>
+
+                <div class="form-group">
+                    <select formControlName="type" [(ngModel)]="myCustomer.address.type" >
+                        <option value="">Choose type</option>
+                        <option *ngFor="let suit of myType">{{suit}}</option>
+                     </select>
+                </div>
+
+            </div>
+
+            
+         <!--<div class="form-group">
+                <label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+            </div>-->
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block">Update </button>
+            </div>
+        </form>
+        <div class="text-center">Already have an account? <a [routerLink]="'/login'">Sign in</a></div>
+    </div>
+</div>
+
+<app-myfooter></app-myfooter>

@@ -36,5 +36,7 @@
     font-weight: bold;
     background:#f0715f ;
 }
-
+.signup-form input {
+    border-radius: 10px !important;
+  }
 

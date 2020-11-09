@@ -23,7 +23,7 @@ export class RegisterPageComponent implements OnInit {
 
   constructor(private customerService:CustomerService,private fb:FormBuilder,private router:Router) {
           this.myCustomer=new Customer();
-          this.myCustomer.address=new Address();
+         this.myCustomer.address=new Address();
    }
 
   ngOnInit(): void {
