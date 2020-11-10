@@ -29,6 +29,8 @@ import { ListCustomersComponent } from './components/list-customers/list-custome
 import { ProductsComponent } from './components/products/products.component';
 import { ListProductsComponent } from './components/list-products/list-products.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 
 
 @NgModule({
@@ -47,6 +49,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     ProductsComponent,
     ListProductsComponent,
     EditProductComponent,
+    AdminDashboardComponent,
+    UserDashboardComponent,
   ],
   imports: [
     BrowserModule,

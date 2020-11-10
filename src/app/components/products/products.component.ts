@@ -65,7 +65,7 @@ export class ProductsComponent implements OnInit {
 
                  //console.log(localStorage.getItem('data'));
 
-                 this.router.navigate(['/login']);
+                 this.router.navigate(['/product']);
                },(error)=>{
 
                      if(error.status==200){
@@ -73,7 +73,7 @@ export class ProductsComponent implements OnInit {
                       //localStorage.setItem('customerData',error.text);
                       //console.log(localStorage.getItem('customerData'));
 
-                      this.router.navigate(['/login']);
+                      this.router.navigate(['/product']);
                      }
                      this.loading=false;
                      console.log(error);
