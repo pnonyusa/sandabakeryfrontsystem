@@ -41,9 +41,10 @@
                 </div>
             </div>  
             <div class="form-group">
-                <input type="tel" class="form-control" formControlName="cellNumber" placeholder="Cell Number" [ngClass]="{ 'is-invalid': submitted && formControls.cellNumber.errors }" >
+                <input  (keypress)="keyPress($event)" type="tel" class="form-control" formControlName="cellNumber" placeholder="Cell Number" [ngClass]="{ 'is-invalid': submitted && formControls.cellNumber.errors }" >
                 <div *ngIf="submitted && formControls.cellNumber.errors" class="invalid-feedback">
                     <div *ngIf="formControls.cellNumber.errors.required">cell number is required</div>
+                    <div *ngIf="formControls.cellNumber.errors.pattern || formControls.cellNumber.errors.maxlength || formControls.cellNumber.errors.minlength">Phone number must be at least 10 numbers</div>
                 </div>
             </div>  
 

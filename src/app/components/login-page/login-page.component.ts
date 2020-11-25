@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/_services/auth.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
@@ -18,7 +19,7 @@ export class LoginPageComponent implements OnInit {
    isLoginFailed = false;
    roles: string[] = [];
 
-  constructor(private authService:AuthService,private fb:FormBuilder,private router:Router,private tokenStorage: TokenStorageService) { }
+  constructor(private authService:AuthService,private fb:FormBuilder,private router:Router,private tokenStorage: TokenStorageService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
 
@@ -27,6 +28,7 @@ export class LoginPageComponent implements OnInit {
       password:['',[Validators.required,Validators.minLength(8)]]
     });
 
+    this.onReset();
 
     if(this.tokenStorage.getToken()){
       this.isLoggedIn=true;
@@ -35,6 +37,12 @@ export class LoginPageComponent implements OnInit {
 
   }
 
+
+
+  onReset(){
+    this.submitted=false;
+    this.loginFrm.reset();
+  }
 
   get formControls(){
     return this.loginFrm.controls;
@@ -69,8 +77,10 @@ export class LoginPageComponent implements OnInit {
                           this.isLoggedIn = true;
                          this.roles = this.tokenStorage.getUser().roles;
 
-                         console.log("roles",response);
-
+                         
+                         this.toastr.success('you are successfully logged in !!!','SUCCESS',{
+                           timeOut:7000
+                         });
 
       
                        this.router.navigate(['/admin-dashboard']);
@@ -78,9 +88,8 @@ export class LoginPageComponent implements OnInit {
       
                            if(error.status==200){
                             
-                            //localStorage.setItem('customerData',error.text);
-                            //console.log(localStorage.getItem('customerData'));
-                            alert('SUCCESSFUL registered !!' );
+                            
+                            
                             this.router.navigate(['/admin-dashboard']);
                            }
                            this.loading=false;

@@ -35,6 +35,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { from } from 'rxjs';
 import{TokenStorageService} from './_services/token-storage.service';
 import{authInterceptorProviders}from './_helper/auth.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +67,7 @@ import{authInterceptorProviders}from './_helper/auth.interceptor';
     MatGridListModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,ToastrModule.forRoot()
   ],
   providers: [CustomerService,ProductService,AuthService,authInterceptorProviders,TokenStorageService],
   bootstrap: [AppComponent]

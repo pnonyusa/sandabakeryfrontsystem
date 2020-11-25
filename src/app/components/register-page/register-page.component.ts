@@ -8,6 +8,7 @@ import { Customer } from 'src/app/models/customer';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CustomerService } from 'src/app/_services/customer.service';
 import {MustMatchValidator} from 'src/app/_helper/must-match.validator';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register-page',
@@ -24,7 +25,7 @@ export class RegisterPageComponent implements OnInit {
    myRole:any=["admin","user"];
    data:any;
 
-  constructor(private authService:AuthService,private fb:FormBuilder,private router:Router) {
+  constructor(private authService:AuthService,private fb:FormBuilder,private router:Router,private toastr:ToastrService) {
           this.myCustomer=new Customer();
          this.myCustomer.address=new Address();
    }
@@ -36,7 +37,8 @@ export class RegisterPageComponent implements OnInit {
 	    emailAddress:['',[Validators.required, Validators.email]],
       password:['',[Validators.required,Validators.minLength(8)]],
       role:['',Validators.required],
-      confirmPassword:['',Validators.required],
+      confirmPassword:['',[Validators.required, Validators.pattern("^[0-9]*$"),
+      Validators.minLength(10), Validators.maxLength(10)]],
       cellNumber:['',Validators.required],
       addressFrm:this.fb.group({
       streetName: ['',Validators.required],
@@ -49,10 +51,19 @@ export class RegisterPageComponent implements OnInit {
        validator:MustMatchValidator("password","confirmPassword")
   });
 
+  this.onReset();
+
   }
 
 
-  
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
 
 
  get formControls(){
@@ -97,18 +108,14 @@ export class RegisterPageComponent implements OnInit {
       
                        
       
-                       console.log('data',response);
-      
-                       //console.log(localStorage.getItem('data'));
+                      this.toastr.success('you are successfully registered !!!','SUCCESS',{
+                        timeOut:7000
+                      });
       
                        this.router.navigate(['/login']);
                      },(error)=>{
       
                            if(error.status==200){
-                            
-                            //localStorage.setItem('customerData',error.text);
-                            //console.log(localStorage.getItem('customerData'));
-                            alert('SUCCESSFUL registered !!' );
                             this.router.navigate(['/login']);
                            }
                            this.loading=false;
