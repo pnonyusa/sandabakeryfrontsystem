@@ -66,8 +66,12 @@ export class LoginPageComponent implements OnInit {
                       this.tokenStorage.saveUser(response);
 
                         this.isLoginFailed = false;
-                         this.isLoggedIn = true;
-                          this.roles = this.tokenStorage.getUser().roles;
+                          this.isLoggedIn = true;
+                         this.roles = this.tokenStorage.getUser().roles;
+
+                         console.log("roles",response);
+
+
       
                        this.router.navigate(['/admin-dashboard']);
                      },(error)=>{
