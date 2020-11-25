@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { from } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Address } from 'src/app/models/address';
 import { Customer } from 'src/app/models/customer';
+import { AuthService } from 'src/app/_services/auth.service';
 import { CustomerService } from 'src/app/_services/customer.service';
-
+import {MustMatchValidator} from 'src/app/_helper/must-match.validator';
 
 @Component({
   selector: 'app-register-page',
@@ -19,29 +21,33 @@ export class RegisterPageComponent implements OnInit {
    loading = false;
    submitted = false;
    myType:any= ["Work","Home"];
+   myRole:any=["admin","user"];
    data:any;
 
-  constructor(private customerService:CustomerService,private fb:FormBuilder,private router:Router) {
+  constructor(private authService:AuthService,private fb:FormBuilder,private router:Router) {
           this.myCustomer=new Customer();
          this.myCustomer.address=new Address();
    }
 
   ngOnInit(): void {
     this.regCustomerFm=this.fb.group({
-      lastName:[''],
-	    firstName:[''],
-	    emailAddress:[''],
-      password:[''],
-      confirmPassword:[''],
-      cellNumber:[''],
+      lastName:['',Validators.required],
+	    firstName:['',Validators.required],
+	    emailAddress:['',[Validators.required, Validators.email]],
+      password:['',[Validators.required,Validators.minLength(8)]],
+      role:['',Validators.required],
+      confirmPassword:['',Validators.required],
+      cellNumber:['',Validators.required],
       addressFrm:this.fb.group({
-      streetName: [''],
-      city: [''],
-      country: [''],
-      postalCode: [''],
-      type: [''],       
+      streetName: ['',Validators.required],
+      city: ['',Validators.required],
+      country: ['',Validators.required],
+      postalCode: ['',[Validators.required,Validators.minLength(4)]],
+      type: ['',Validators.required],       
       })
-    });
+  },{
+       validator:MustMatchValidator("password","confirmPassword")
+  });
 
   }
 
@@ -49,60 +55,79 @@ export class RegisterPageComponent implements OnInit {
   
 
 
+ get formControls(){
+         return this.regCustomerFm.controls;
+ }
  
 
 
   submit(){
-     this.submitted=true;
+
+
+    if(this.regCustomerFm.valid){
+
+
+      this.submitted=true;
      
 
-var customer={
-       'firstName':this.regCustomerFm.get("firstName").value,
-       'password':this.regCustomerFm.get("password").value,
-       'lastName':this.regCustomerFm.get("lastName").value,
-       'emailAddress':this.regCustomerFm.get("emailAddress").value,
-       'cellNumber':this.regCustomerFm.get("cellNumber").value,
-       'address':{'streetName':this.regCustomerFm.get("addressFrm.streetName").value,
-                   'city':this.regCustomerFm.get("addressFrm.city").value,
-                   'country':this.regCustomerFm.get("addressFrm.country").value,
-                   'postalCode':this.regCustomerFm.get("addressFrm.postalCode").value,
-                   'type':this.regCustomerFm.get("addressFrm.type").value
-                   }
-     }
+      var customer={
+             'firstName':this.regCustomerFm.get("firstName").value,
+             'password':this.regCustomerFm.get("password").value,
+             'lastName':this.regCustomerFm.get("lastName").value,
+             'emailAddress':this.regCustomerFm.get("emailAddress").value,
+             'cellNumber':this.regCustomerFm.get("cellNumber").value,
+             'role':this.regCustomerFm.get("role").value,
+             'address':{'streetName':this.regCustomerFm.get("addressFrm.streetName").value,
+                         'city':this.regCustomerFm.get("addressFrm.city").value,
+                         'country':this.regCustomerFm.get("addressFrm.country").value,
+                         'postalCode':this.regCustomerFm.get("addressFrm.postalCode").value,
+                         'type':this.regCustomerFm.get("addressFrm.type").value
+                         }
+           }
+      
+          
+      
+          
+          this.loading=true;
+      
+          this.authService.registerCustomer(customer)
+           .pipe(first()).
+            subscribe(
+                     (response)=>{
+      
+                       
+      
+                       console.log('data',response);
+      
+                       //console.log(localStorage.getItem('data'));
+      
+                       this.router.navigate(['/login']);
+                     },(error)=>{
+      
+                           if(error.status==200){
+                            
+                            //localStorage.setItem('customerData',error.text);
+                            //console.log(localStorage.getItem('customerData'));
+                            alert('SUCCESSFUL registered !!' );
+                            this.router.navigate(['/login']);
+                           }
+                           this.loading=false;
+                           console.log(error);
+                          
+                     }     
+           );
+      
+    }
+      
+ 
 
-    
 
-    
-    this.loading=true;
-
-    this.customerService.registerCustomer(customer)
-     .pipe(first()).
-      subscribe(
-               (response)=>{
-
-                 
-
-                 console.log('data',response);
-
-                 //console.log(localStorage.getItem('data'));
-
-                 this.router.navigate(['/login']);
-               },(error)=>{
-
-                     if(error.status==200){
-                      
-                      //localStorage.setItem('customerData',error.text);
-                      //console.log(localStorage.getItem('customerData'));
-
-                      this.router.navigate(['/login']);
-                     }
-                     this.loading=false;
-                     console.log(error);
-                    
-               }     
-     );
+  }
 
 
+  onReset(){
+    this.submitted=false;
+    this.regCustomerFm.reset();
   }
 
 

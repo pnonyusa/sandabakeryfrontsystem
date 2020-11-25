@@ -5,57 +5,105 @@
             <h2>Register</h2>
             <p class="hint-text">Create your account. It's free and only takes a minute.</p>
             <div class="form-group">
-                    <input type="text" class="form-control" formControlName="firstName" placeholder="First Name" >    	
+                    <input type="text" class="form-control" formControlName="firstName" placeholder="First Name" [ngClass]="{'is-invalid':submitted && formControls.firstName.errors}" >    	
+            
+                  <div *ngIf="submitted && formControls.firstName.errors" class="invalid-feedback">
+                      <div *ngIf="formControls.firstName.errors.required">firstName Name is required</div>
+                  </div>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name" >
+                <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name" [ngClass]="{'is-invalid':submitted && formControls.lastName.errors}" >
+                <div *ngIf="submitted && formControls.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.lastName.errors.required">firstName Name is required</div>
+                </div>
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" formControlName="emailAddress" placeholder="Email" >
+                <input type="email" class="form-control" formControlName="emailAddress" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && formControls.emailAddress.errors }" >
+                    
+                <div *ngIf="submitted && formControls.emailAddress.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.emailAddress.errors.required">Email is required</div>
+                    <div *ngIf="formControls.emailAddress.errors.email">Email must be a valid email address</div>
+                </div>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" formControlName="password" placeholder="Password" >
+                <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }" >
+                <div *ngIf="submitted && formControls.password.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.password.errors.required">Password is required</div>
+                    <div *ngIf="formControls.password.errors.minlength">Password must be at least 8 characters</div>
+                </div>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password">
+                <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password" [ngClass]="{ 'is-invalid': submitted && formControls.confirmPassword.errors }">
+
+                <div *ngIf="submitted && formControls.confirmPassword.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.confirmPassword.errors.required">Confirm Password is required</div>
+                    <div *ngIf="formControls.confirmPassword.errors.MustMatchValidator">Passwords must match</div>
+                </div>
             </div>  
             <div class="form-group">
-                <input type="tel" class="form-control" formControlName="cellNumber" placeholder="Cell Number" >
+                <input type="tel" class="form-control" formControlName="cellNumber" placeholder="Cell Number" [ngClass]="{ 'is-invalid': submitted && formControls.cellNumber.errors }" >
+                <div *ngIf="submitted && formControls.cellNumber.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.cellNumber.errors.required">cell number is required</div>
+                </div>
             </div>  
 
             
             <div formGroupName="addressFrm">
                 <div class="form-group">
-                    <input type="text" class="form-control" formControlName="streetName" placeholder="street Name" >
+                    <input type="text" class="form-control" formControlName="streetName" placeholder="street Name"  [ngClass]="{ 'is-invalid': submitted && formControls.addressFrm.get('streetName').errors }" >
+                    <div *ngIf="submitted && formControls.addressFrm.get('streetName').errors" class="invalid-feedback">
+                        <div *ngIf="formControls.addressFrm.get('streetName').errors.required">street name is required</div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" formControlName="city" placeholder="city" >
+                    <input type="text" class="form-control" formControlName="city" placeholder="city"  [ngClass]="{ 'is-invalid': submitted && formControls.addressFrm.get('city').errors }" >
+                    <div *ngIf="submitted && formControls.addressFrm.get('city').errors" class="invalid-feedback">
+                        <div *ngIf="formControls.addressFrm.get('city').errors.required">city is required</div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" formControlName="country" placeholder="country" >
+                    <input type="text" class="form-control" formControlName="country" placeholder="country"  [ngClass]="{ 'is-invalid': submitted && formControls.addressFrm.get('country').errors }" >
+                    <div *ngIf="submitted && formControls.addressFrm.get('country').errors" class="invalid-feedback">
+                        <div *ngIf="formControls.addressFrm.get('country').errors.required">country is required</div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" formControlName="postalCode" placeholder="postalCode" >
-
+                    <input type="text" class="form-control" formControlName="postalCode" placeholder="postalCode"  [ngClass]="{ 'is-invalid': submitted && formControls.addressFrm.get('postalCode').errors }" >
+                    <div *ngIf="submitted && formControls.addressFrm.get('postalCode').errors" class="invalid-feedback">
+                        <div *ngIf="formControls.addressFrm.get('postalCode').errors.required">Postal Code is required</div>
+                        <div *ngIf="formControls.addressFrm.get('postalCode').errors.minlength">Postal Code must be at least 4 characters</div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <select formControlName="type">
+                    <select formControlName="type"  [ngClass]="{ 'is-invalid': submitted && formControls.addressFrm.get('type').errors }">
                         <option value="">Choose type</option>
                         <option *ngFor="let suit of myType">{{suit}}</option>
                      </select>
+                     <div *ngIf="submitted && formControls.addressFrm.get('type').errors" class="invalid-feedback">
+                        <div *ngIf="formControls.addressFrm.get('type').errors.required">type is required</div>
+                    </div>
                 </div>
 
             </div>
+            <div class="form-group">
+                <select formControlName="role"  [ngClass]="{ 'is-invalid': submitted && formControls.role.errors }">
+                    <option value="">Choose role</option>
+                    <option *ngFor="let roles of myRole">{{roles}}</option>
+                 </select>
 
+                 <div *ngIf="submitted && formControls.role.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.role.errors.required">user role is required</div>
+                </div>
+            </div>
             
          <!--<div class="form-group">
                 <label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
             </div>-->
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-lg btn-block">REGISTER NOW</button>
+                <button type="submit" class="btn btn-success btn-lg btn-block" [disabled]="!regCustomerFm.valid" >REGISTER NOW</button>
             </div>
         </form>
         <div class="text-center">Already have an account? <a [routerLink]="'/login'">SIGN IN</a></div>

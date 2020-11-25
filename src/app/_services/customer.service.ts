@@ -19,13 +19,7 @@ export class CustomerService {
 
   
 
-registerCustomer(customer){
-  
-  var header = new HttpHeaders({'Content-Type':'application/json'});
-  return this.httpClient.post<any>(`${AppSettings.BASE_URL}/customers/signup`,customer,{headers : header}).
-    pipe(map((response)=>{return response}));
 
-}
 
 
 

@@ -22,6 +22,7 @@ import { HeaderPageComponent } from './components/header-page/header-page.compon
 import { ForgotPasswordPageComponent } from './components/forgot-password-page/forgot-password-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import{CustomerService} from './_services/customer.service';
+import{AuthService} from './_services/auth.service';
 import{ProductService} from './_services/product.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateCustomerProfileComponent } from './components/update-customer-profile/update-customer-profile.component';
@@ -31,8 +32,9 @@ import { ListProductsComponent } from './components/list-products/list-products.
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
-
-
+import { from } from 'rxjs';
+import{TokenStorageService} from './_services/token-storage.service';
+import{authInterceptorProviders}from './_helper/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [CustomerService,ProductService],
+  providers: [CustomerService,ProductService,AuthService,authInterceptorProviders,TokenStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

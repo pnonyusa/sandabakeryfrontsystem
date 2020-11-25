@@ -11,4 +11,5 @@ export class Customer {
        cellNumber:string=null;
        confirmPassword:string=null;
        address:Address=null;
+       role:string=null;
 }

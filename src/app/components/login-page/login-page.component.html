@@ -2,16 +2,25 @@
 <div class="bg-img">
     <app-header-page></app-header-page>
     <div class="login-form">
-        <form >
+        <form [formGroup]="loginFrm" (ngSubmit)="submit()">
             <h2 class="text-center">Sanda's Bakery Log in</h2>       
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Username" required="required">
+                <input type="email" class="form-control" formControlName="emailAddress" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && formControls.emailAddress.errors }" >
+                    
+                <div *ngIf="submitted && formControls.emailAddress.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.emailAddress.errors.required">Email is required</div>
+                    <div *ngIf="formControls.emailAddress.errors.email">Email must be a valid email address</div>
+                </div>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" required="required">
+                <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }" >
+                <div *ngIf="submitted && formControls.password.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.password.errors.required">Password is required</div>
+                    <div *ngIf="formControls.password.errors.minlength">Password must be at least 8 characters</div>
+                </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginFrm.valid">LOGIN</button>
             </div>
             <div class="clearfix">
                 <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>

@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Address } from 'src/app/models/address';
 import { Customer } from 'src/app/models/customer';
+import { MustMatchValidator } from 'src/app/_helper/must-match.validator';
 import { CustomerService } from 'src/app/_services/customer.service';
 
 @Component({
@@ -45,7 +46,9 @@ export class UpdateCustomerProfileComponent implements OnInit {
       postalCode: [''],
       type: [''],       
       })
-    });
+    },{
+      validator:MustMatchValidator("password","confirmPassword")
+ });
 
 
 
