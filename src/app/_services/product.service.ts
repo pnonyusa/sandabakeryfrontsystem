@@ -12,7 +12,7 @@ export class ProductService {
 
   addProduct(product){
     var header = new HttpHeaders({'Content-Type':'application/json'});
-    return this.httpClient.post<any>(`${AppSettings.BASE_URL}/product/addproduct`,product,{headers : header}).
+    return this.httpClient.post<any>(`${AppSettings.BASE_URL}/product/admin/addproduct`,product,{headers : header}).
       pipe(map((response)=>{return response}));
 
   }
@@ -27,7 +27,7 @@ export class ProductService {
   updateProduct(productId,product){
     var header = new HttpHeaders({'Content-Type':'application/json'});
   
-    return this.httpClient.put<any>(`${AppSettings.BASE_URL}/product/updateproduct/${productId}`,product,{headers:header}).
+    return this.httpClient.put<any>(`${AppSettings.BASE_URL}/product/admin/updateproduct/${productId}`,product,{headers:header}).
             pipe(map(x=>{
                    if(productId!=null){
                        
@@ -50,7 +50,7 @@ export class ProductService {
 
   deleteProduct(productId){
     var header = new HttpHeaders({'Content-Type':'application/json'});
-    return this.httpClient.delete<any>(`${AppSettings.BASE_URL}/product/deleteProduct/${productId}`,{headers:header})
+    return this.httpClient.delete<any>(`${AppSettings.BASE_URL}/product/admin/deleteProduct/${productId}`,{headers:header})
     .pipe(map((response)=> { return response; }));
 
   }

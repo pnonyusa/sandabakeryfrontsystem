@@ -26,7 +26,7 @@ export class CustomerService {
 updateCustomer(customerId,customer){
   var header = new HttpHeaders({'Content-Type':'application/json'});
 
-  return this.httpClient.put<any>(`${AppSettings.BASE_URL}/customers/update/${customerId}`,customer,{headers:header}).
+  return this.httpClient.put<any>(`${AppSettings.BASE_URL}/users/update/${customerId}`,customer,{headers:header}).
           pipe(map(x=>{
                  if(customerId!=null){
                      
@@ -42,13 +42,13 @@ updateCustomer(customerId,customer){
 
 getUserDetails(page,limit){
   var header = new HttpHeaders({'Content-Type':'application/json'});
-  return this.httpClient.get<any>(`${AppSettings.BASE_URL}/customers?page=${page}&limit=${limit}`,{headers:header})
+  return this.httpClient.get<any>(`${AppSettings.BASE_URL}/users/admin?page=${page}&limit=${limit}`,{headers:header})
   .pipe(map((response)=> { return response; }));
 }
 
 getUserDetail(customerId){
   var header = new HttpHeaders({'Content-Type':'application/json'});
-  return this.httpClient.get<any>(`${AppSettings.BASE_URL}/customers/${customerId}`,{headers:header})
+  return this.httpClient.get<any>(`${AppSettings.BASE_URL}/users/${customerId}`,{headers:header})
   .pipe(map((response)=> { return response; }));
 }
 
@@ -56,7 +56,7 @@ getUserDetail(customerId){
 
 deleteCustomer(customerId){
   var header = new HttpHeaders({'Content-Type':'application/json'});
-  return this.httpClient.delete<any>(`${AppSettings.BASE_URL}/customers/delete/${customerId}`,{headers:header})
+  return this.httpClient.delete<any>(`${AppSettings.BASE_URL}/users/admin/delete/${customerId}`,{headers:header})
   .pipe(map((response)=>{return response}));
 }
 

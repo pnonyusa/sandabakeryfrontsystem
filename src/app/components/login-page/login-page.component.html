@@ -1,6 +1,5 @@
-
+<app-navi></app-navi>
 <div class="bg-img">
-    <app-header-page></app-header-page>
     <div class="login-form">
         <form [formGroup]="loginFrm" (ngSubmit)="submit()">
             <h2 class="text-center">Sanda's Bakery Log in</h2>       
@@ -29,6 +28,6 @@
         </form>
         <p class="text-center"><a [routerLink]="'/register'">Create an Account</a></p>
     </div>
-    <app-myfooter></app-myfooter>
+    <app-footer></app-footer>
 </div>
 

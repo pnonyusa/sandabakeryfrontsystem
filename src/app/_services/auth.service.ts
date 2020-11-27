@@ -17,7 +17,7 @@ export class AuthService {
   registerCustomer(customer){
   
     var header = new HttpHeaders({'Content-Type':'application/json'});
-    return this.httpClient.post<any>(`${AppSettings.BASE_URL}/customers/signup`,customer,{headers : header}).
+    return this.httpClient.post<any>(`${AppSettings.BASE_URL}/users/signup`,customer,{headers : header}).
       pipe(map((response)=>{return response}));
   
   }
@@ -25,7 +25,7 @@ export class AuthService {
 
   signIn(credentials){
     var header = new HttpHeaders({'Content-Type':'application/json'});
-    return this.httpClient.post<any>(`${AppSettings.BASE_URL}/customers/login`,credentials,{headers : header}).
+    return this.httpClient.post<any>(`${AppSettings.BASE_URL}/users/login`,credentials,{headers : header}).
       pipe(map((response)=>{return response}));
   }
 

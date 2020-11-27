@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomepageComponent } from './components/Home/homepage/homepage.component';
 import { ContactpageComponent } from './components/Home/contactpage/contactpage.component';
 import { NaviComponent } from './components/Home/navi/navi.component';
-import { MyfooterComponent } from './components/Home/myfooter/myfooter.component';
+import { FooterComponent } from './components/Home/footer/footer.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -36,13 +36,16 @@ import { from } from 'rxjs';
 import{TokenStorageService} from './_services/token-storage.service';
 import{authInterceptorProviders}from './_helper/auth.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     ContactpageComponent,
     NaviComponent,
-    MyfooterComponent,
+    FooterComponent,
     LoginPageComponent,
     RegisterPageComponent,
     HeaderPageComponent,
@@ -54,6 +57,7 @@ import { ToastrModule } from 'ngx-toastr';
     EditProductComponent,
     AdminDashboardComponent,
     UserDashboardComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatGridListModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule,ToastrModule.forRoot()
+    FormsModule,ToastrModule.forRoot(), NgbModule
   ],
   providers: [CustomerService,ProductService,AuthService,authInterceptorProviders,TokenStorageService],
   bootstrap: [AppComponent]
