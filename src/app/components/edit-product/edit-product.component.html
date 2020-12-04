@@ -30,7 +30,7 @@
 
 
             <div class="form-group">
-                <select [(ngModel)]="product.productCategory" disabled formControlName="productCategory">
+                <select [(ngModel)]="product.category.categoryName" disabled formControlName="productCategory">
                     <option value="">Choose category</option>
                     <option *ngFor="let category of categories">{{category}}</option>
                  </select>
