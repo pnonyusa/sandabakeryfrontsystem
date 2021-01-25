@@ -35,10 +35,10 @@ export class RegisterPageComponent implements OnInit {
       lastName:['',Validators.required],
 	    firstName:['',Validators.required],
 	    emailAddress:['',[Validators.required, Validators.email]],
-      password:['',[Validators.required,Validators.minLength(8)]],
+      password:['',[Validators.required,Validators.minLength(8),Validators.pattern("^[0-9]*$")]],
       role:['',Validators.required],
       confirmPassword:['',[Validators.required, Validators.pattern("^[0-9]*$"),
-      Validators.minLength(10), Validators.maxLength(10)]],
+      Validators.minLength(8)]],
       cellNumber:['',Validators.required],
       addressFrm:this.fb.group({
       streetName: ['',Validators.required],
@@ -75,7 +75,7 @@ export class RegisterPageComponent implements OnInit {
   submit(){
 
 
-    if(this.regCustomerFm.valid){
+    
 
 
       this.submitted=true;
@@ -124,7 +124,7 @@ export class RegisterPageComponent implements OnInit {
                      }     
            );
       
-    }
+    
       
  
 

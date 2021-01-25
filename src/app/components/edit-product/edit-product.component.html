@@ -1,5 +1,5 @@
 
-<app-header-page></app-header-page>
+<app-navi></app-navi>
 <div class="bg-img">
     <div class="product-form">
         <form [formGroup]="editProductFm" (ngSubmit)="updateProduct(product.productId,product)" >
@@ -30,7 +30,7 @@
 
 
             <div class="form-group">
-                <select [(ngModel)]="product.category.categoryName" disabled formControlName="productCategory">
+                <select [(ngModel)]="product.category.categoryName" disabled formControlName="categoryName">
                     <option value="">Choose category</option>
                     <option *ngFor="let category of categories">{{category}}</option>
                  </select>

@@ -68,7 +68,7 @@ export class LoginPageComponent implements OnInit {
             subscribe(
                      (response)=>{
       
-                       
+//
       
                       this.tokenStorage.saveToken(response.accessToken);
                       this.tokenStorage.saveUser(response);
@@ -78,19 +78,32 @@ export class LoginPageComponent implements OnInit {
                          this.roles = this.tokenStorage.getUser().roles;
 
                          
+
+                         
                          this.toastr.success('you are successfully logged in !!!','SUCCESS',{
                            timeOut:7000
                          });
 
+
+                         
+                         for(var i=0;i<this.tokenStorage.getUser().roles.length;i++){
+                          if(this.tokenStorage.getUser().roles[i]==="ROLE_ADMIN"){
+                            this.router.navigate(['/admin-dashboard']);
+                          }
+
+                          if(this.tokenStorage.getUser().roles[i]==="ROLE_USER"){
+                            this.router.navigate(['/customer-dashboard']);
+                          }
+                         }
       
-                       this.router.navigate(['/admin-dashboard']);
+                       
                      },(error)=>{
       
                            if(error.status==200){
                             
                             
                             
-                            this.router.navigate(['/admin-dashboard']);
+                            //this.router.navigate(['/admin-dashboard']);
                            }
                            this.loading=false;
                            console.log(error);

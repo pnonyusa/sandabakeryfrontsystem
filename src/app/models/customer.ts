@@ -3,13 +3,12 @@ import { Address } from './address';
 export class Customer {
 
 
-       customerId:string=null;
-       lastName:string=null;
-	 firstName:string=null;
-	 emailAddress:string=null;
-	 password:string=null;
-       cellNumber:string=null;
-       confirmPassword:string=null;
-       address:Address=null;
-       role:string=null;
+       customerId:string;
+       lastName:string;
+	 firstName:string;
+	 emailAddress:string;
+	password:string;
+       cellNumber:string;
+       confirmPassword:string;
+       address:Address;
 }

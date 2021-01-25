@@ -24,7 +24,7 @@ export class ProductsComponent implements OnInit {
     this.productFm=this.fb.group({
       productName:[''],
 	    productDescription:[''],
-	    productCategory:[''],
+	    categoryName:[''],
       productRating:[''],
       price:[''],
       productIngredients:[''],
@@ -41,7 +41,7 @@ export class ProductsComponent implements OnInit {
     var product={
       'productName':this.productFm.get("productName").value,
       'productDescription':this.productFm.get("productDescription").value,
-	    'productCategory':this.productFm.get("productCategory").value,
+	    'category':{'categoryName':this.productFm.get("categoryName").value},
       'productRating':this.productFm.get("productRating").value,
       'price':+this.productFm.get("price").value,
       'productIngredients':this.productFm.get("productIngredients").value,

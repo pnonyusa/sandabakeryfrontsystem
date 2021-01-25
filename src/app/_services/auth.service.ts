@@ -24,7 +24,8 @@ export class AuthService {
 
 
   signIn(credentials){
-    var header = new HttpHeaders({'Content-Type':'application/json'});
+    var header = new HttpHeaders({'Content-Type':'application/json'
+  });
     return this.httpClient.post<any>(`${AppSettings.BASE_URL}/users/login`,credentials,{headers : header}).
       pipe(map((response)=>{return response}));
   }

@@ -20,7 +20,7 @@ export class ListCustomersComponent implements OnInit {
 
   ngOnInit(): void {
       
-    this.customerService.getUserDetails(0,11).subscribe((data) => {
+    this.customerService.getUserDetails().subscribe((data) => {
       this.myCustomer=(data);
       //this.myCustomer.address=(data.address);
        console.log("my payments :",JSON.stringify(data));

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Product } from 'src/app/models/product';
+import { ProductCategory } from 'src/app/models/product-category';
 import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
@@ -24,6 +25,7 @@ export class EditProductComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,private router:Router,private productService:ProductService,private fb:FormBuilder) { 
        this.product=new Product();
+       this.product.category=new ProductCategory(); 
   }
 
   ngOnInit(): void {
@@ -32,7 +34,7 @@ export class EditProductComponent implements OnInit {
     this.editProductFm=this.fb.group({
       productName:[''],
 	    productDescription:[''],
-	    productCategory:[''],
+	    categoryName:[''],
       productRating:[''],
       price:[''],
       productIngredients:[''],

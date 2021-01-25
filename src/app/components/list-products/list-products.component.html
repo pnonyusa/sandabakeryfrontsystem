@@ -1,5 +1,5 @@
+<app-navi></app-navi>
 <h1>list-products works!</h1>
-
 <table class="table table-hover">
     <thead>
       <tr>
@@ -23,7 +23,7 @@
         <td>{{myproducts.productId}}</td>
         <td>{{myproducts.productName}}</td>
         <td>{{myproducts.productDescription}}</td>
-        <td>{{myproducts.productCategory}}</td>
+        <td>{{myproducts.category.categoryName}}</td>
         <td>{{myproducts.productRating}}</td>
         <td>{{myproducts.price}}</td>
         <td>{{myproducts.quantityOnHand}}</td>
@@ -48,3 +48,5 @@
       </tr>
     </tbody>
   </table>
+
+<button [routerLink]="'/product/add'">Add Product</button>
